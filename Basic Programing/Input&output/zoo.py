@@ -1,4 +1,4 @@
-input_word = str(input())
+input_word = input()
 
 z_count = 0 
 o_count = 0
