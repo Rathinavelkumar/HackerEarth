@@ -1,27 +1,58 @@
-testcases_count = int(input())
+tc = int(input())
 
-for testcase in range(0, testcases_count):
-    dimension = input()
-    row, column = dimension.split()
+for _ in range(tc):
+    m, n = map(int, input().strip().split())
 
-    border_list=[]
-    first = 0
-    last = 0
+    arr=[list(input()) for i in range(m)]
 
-    for each_row in range(0, int(row)):
-        data = input()
-        row_length = data.count("#")
-        current_index = data.find("#")
-        end_index = current_index+row_length-1
+    borderList=[]
 
-        if first==0 and last==0 : length=end_index-current_index+1
-        elif current_index<first and end_index<first: length=end_index-current_index+1
-        elif current_index>first and end_index<last: length=0
-        elif current_index==first and end_index>last: length=end_index-last
-        elif current_index>last: length=end_index-current_index+1
+    for i in range(0,m):
+        top, bottom = 0, 0
+        topMax, bottomMax = top, bottom
 
-        border_list.append(length)
-        first = current_index
-        last = end_index
+        if m==1:
+            borderList.append(str(arr[i]).count("#"))
+            break
 
-    print(max(border_list))
+        for j in range(0,n):
+
+            if i==0 and arr[i][j]=="#" and m!=1: 
+                top = top+1 
+                if arr[i+1][j]==".":
+                    bottom=bottom+1
+                elif bottomMax<bottom: 
+                    bottomMax=bottom
+                    bottom=0
+            elif i==0 and j==n-1:
+                if bottomMax<bottom: bottomMax=bottom 
+                borderList.append(max([top, bottomMax]))
+
+            if i==m-1 and arr[i][j]=="#" and m!=1: 
+                bottom=bottom+1
+                if arr[i-1][j] ==".": 
+                    top=top+1
+                elif topMax<top:
+                    topMax=top
+                    top=0
+            elif i==m-1 and j==n-1:
+                if topMax<top: topMax=top
+                borderList.append(max([topMax, bottom]))
+
+            if i!=0 and i!=m-1 and arr[i][j]=="#" and m!=1:
+                if arr[i-1][j]==".": 
+                    top=top+1
+                elif topMax<top:
+                    topMax=top
+                    top=0
+                if arr[i+1][j]==".": 
+                    bottom=bottom+1
+                elif bottomMax<bottom: 
+                    bottomMax=bottom
+                    bottom=0
+            elif i!=0 and i!=m-1 and j==n-1:
+                if topMax<top: topMax=top       
+                if bottomMax<bottom: bottomMax=bottom 
+                borderList.append(max([topMax, bottomMax]))
+
+    print(max(borderList))
