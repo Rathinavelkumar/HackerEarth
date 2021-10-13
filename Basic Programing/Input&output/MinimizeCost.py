@@ -1,19 +1,30 @@
-from typing import Text
+size,k = map(int, input().split())
+arr = map(int, input().split())
 
+total=0
+counter=0
+m=k
+flag=False
 
-size, k = map(int,input().split(" "))
-input_array = [int(each) for each in input().split()]
-transpose_array = [0 for _ in range(0,size)]
+for i in arr:
 
-final_list=[]
-for i in range(size):
-    diff = transpose_array[i]-input_array[i]
-    if diff<=k:
-        transpose_array[i] = diff
+    if flag==False:
+            if(i>=0):
+                counter=counter+1
+                total=total+i
+                m=k
+            else:
+                if(counter==0):
+                    print(abs(sum(arr)+i))
+                    flag=True
+                else:
+                    m-=1
+                    if(m<0):
+                        total=total+abs(i)
+                    else:
+                        total=total+i
+    else:
+        break
 
-    final_list.append(abs(input_array[i]+transpose_array[i]))
-
-print(input_array)
-print(transpose_array)
-print(final_list)
-print(sum(final_list))
+if flag==False:
+    print(abs(total))
