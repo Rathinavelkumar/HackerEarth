@@ -1,22 +1,26 @@
-n = int(input())
-data = [int(x) for x in input().split()]
+size = int(input())
+arr = list(map(int,input().split()))
+start_index = 1
+distance = 2
 
-sum_list = []
-result = 0
-for i in range(0,n):
-    counter=1
-    total = 0
-    start_index = i
-    end_index = i + counter
-
-    while end_index<=n:
-        print(data[start_index:end_index])
-        total = total + sum(data[start_index:end_index])
-        counter = counter + 1
-        start_index = end_index
-        end_index = end_index + counter
-
-    if total>result:
-        result=total
-
-print(result)
+while start_index<=size:
+    start_index = start_index + distance
+    distance=distance+1
+ 
+start_index = start_index-(distance-1)
+distance=distance-2
+total = sum(arr[:start_index])
+temp_total = total
+ 
+for i in range(1,size):
+    total = total - arr[i-1]
+    if start_index<size:
+        total = total + arr[start_index]
+        start_index = start_index + 1
+    else:
+        distance = distance - 1
+        total = total - sum(arr[size-distance:size])
+        start_index = start_index - distance
+    if total > temp_total:
+        temp_total = total
+print(temp_total)
