@@ -7,8 +7,6 @@
 #1 minute = 30/60 = 0.5 degree
 #1 second = 0.5/60 = 0.00833
 
-import math
-
 input_hour, input_mint = map(int, input().split(":"))
 input_seconds= (input_hour*60*60) + (input_mint*60)
 i=0
