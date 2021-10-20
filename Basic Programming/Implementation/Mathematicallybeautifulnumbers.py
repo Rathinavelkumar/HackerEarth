@@ -8,6 +8,6 @@ for each in range(tc):
             flag=False
             break
         else:
-            x //= k
+            x = x//k
     
-    if flag==False: print("YES")
+    if flag==True: print("YES")
