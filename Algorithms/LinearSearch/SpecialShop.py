@@ -1,8 +1,12 @@
-N, A, B = map(int, input().split())
+tc = int(input())
 
-min_cost=[]
-for i in range(0, N+1):
-    cost = A*(i**2) + B*((N-i)**2)
-    min_cost.append(cost)
+for _ in range(tc):
+    N, A, B = map(int, input().split())
+    # (A*(X**2)) + (B*((N-X)**2))
+    # differentiate the above quadratic equation to find minimum point
+    X = N*B//(A+B)
+    Y = N-X
 
-print(min(min_cost))
+    res1 = A*(X**2) + B*(Y**2)
+    res2 = A*((X+1)**2) + B*((Y-1)**2)
+    print(min(res1,res2))
