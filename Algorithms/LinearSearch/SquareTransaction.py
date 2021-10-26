@@ -1,19 +1,12 @@
+import bisect
+
 T = int(input())
-arr = [ int(x) for x in input().split() ]
+total, res_arr = 0, []
+for each in input().split():
+    total=total+int(each)
+    res_arr.append(total)
 
 target=int(input())
 for _ in range(target):
     num = int(input())
-
-    flag=False
-    total=0
-    count=0
-
-    for each in arr:
-        total=total+each
-        count=count+1
-        if total>=num:
-            flag=True
-            break
-        
-    print(count) if flag==True else print(-1)
+    print(-1) if num>res_arr[len(res_arr)-1] else print(bisect.bisect_left(res_arr,num)+1)

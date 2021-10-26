@@ -1,12 +1,9 @@
-import bisect
+arr = [10,20,30,40,50]
+num = 25
 
-T = int(input())
-total, res_arr = 0, []
-for each in input().split():
-    total=total+int(each)
-    res_arr.append(total)
+first_index=0
+last_index=len(arr)-1
+search_index=-1
 
-target=int(input())
-for _ in range(target):
-    num = int(input())
-    print(-1) if num>res_arr[len(res_arr)-1] else print(bisect.bisect_left(res_arr,num)+1)
+while (first_index<=last_index) and (search_index==-1):
+    mid=(first_index+last_index)
