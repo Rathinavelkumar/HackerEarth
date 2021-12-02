@@ -9,7 +9,7 @@ while inp_data[0]=='/':
         temp.append(inp_data[i])
         if inp_data[i]=='/':
             n=i 
-        i+=1
+        i=i+1
     inp_data=inp_data[:n]+inp_data[i-1:n:-1]+inp_data[i+1:]
 
 print(''.join(inp_data))
